@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Login Suite">
+    <test verbose="2" preserve-order="true" name="D:/Intellij Idea/Inrellij-projects/E2E-Selenium-Testing/E2E-Selenium-Testing-Practice/ecommerce-lambdatest">
+        <parameter name="email" value="hiwakon486@glumark.com"></parameter>
+        <parameter name="password" value="KL8WFfqdm@SDWmR"></parameter>
+        <parameter name="browser" value="chrome"></parameter>
+        <classes>
+            <class name="LoginTest"></class>
+        </classes>
+    </test>
+</suite>
