@@ -1,0 +1,19 @@
+Scenario 1:
+* The user open "https://ecommerce-playground.lambdatest.io/" in the browser
+* The user clicks on the "My Profile" link
+* navigate to registration page and fill the form
+* The user clicks on the "Continue" button to submit the form
+* The user clicks on the "My Profile" link
+* The user clicks on the "Logout" link
+
+
+Scenario 2:
+* The user open "https://ecommerce-playground.lambdatest.io/" in the browser
+* The user hover on the "My Profile" link
+* The user clicks on the "Login" button
+* The user enters the "email" and "password"
+* The user add item to cart
+* The user clicks on the "Checkout" button
+* The user go to card page
+* The user clicks on the "Place Order" button
+
