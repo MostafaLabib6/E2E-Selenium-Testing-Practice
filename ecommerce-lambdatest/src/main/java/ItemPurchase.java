@@ -2,8 +2,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class BuyItem {
+import java.time.Duration;
+
+public class ItemPurchase {
     WebDriver driver;
     Login login;
     By Home = By.xpath("//*[@id=\"widget-navbar-217834\"]/ul/li[1]/a/div/span");
@@ -19,12 +22,11 @@ public class BuyItem {
     By Region = By.xpath("//*[@id=\"input-payment-zone\"]");
     By Terms = By.xpath("//*[@id=\"form-checkout\"]/div/div[2]/div/div[5]/label");
     By ContinueBtn = By.xpath("//*[@id=\"button-payment-address\"]");
+    By ConfirmOrder = By.xpath("//*[@id=\"button-confirm\"]");
     Select select;
 
-    public BuyItem(WebDriver driver,String email,String password) {
+    public ItemPurchase(WebDriver driver) {
         this.driver = driver;
-        driver.manage().window().maximize();
-        driver.get("https://ecommerce-playground.lambdatest.io/");
     }
 
     public void setFirstName(String name) {
@@ -46,9 +48,9 @@ public class BuyItem {
        select = new Select(find(Country));
        select.selectByVisibleText(country);
     }
-    public void setRegion(String region) {
+    public void setRegion(int index) {
         select = new Select(find(Region));
-        select.selectByVisibleText(region);
+        select.selectByIndex(index);
     }
     public void clickTerms() {
         click(Terms);
@@ -65,19 +67,30 @@ public class BuyItem {
     public void clickBuyNowBtn() {
         click(BuyNowBtn);
     }
-    public void BuyProduct(){
+    public void clickConfirmOrder() {
+        click(ConfirmOrder);
+    }
+    public void purchaseItem(String firstName,String lastName,String address,String city,String zipCode,String country,int state){
         clickHome();
         clickItem();
         clickBuyNowBtn();
-        setFirstName("FirstName Test");
-        setLastName("LastName Test");
-        setAddress1("Address Test");
-        setCity("City Test");
-        setPostCode("12345");
-        setCountry("India");
-        setRegion("Andhra Pradesh");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(webDriver -> getCurrentUrl().equals("https://ecommerce-playground.lambdatest.io/index.php?route=checkout/checkout"));
+        setFirstName(firstName);
+        setLastName(lastName);
+        setAddress1(address);
+        setCity(city);
+        setPostCode(zipCode);
+        setCountry(country);
+        setRegion(state);
         clickTerms();
         clickContinueBtn();
+        assert getCurrentUrl().equals("https://ecommerce-playground.lambdatest.io/checkout/shipping");
+        clickConfirmOrder();
+        assert getCurrentUrl().equals("https://ecommerce-playground.lambdatest.io/checkout/confirm");
+    }
+    public String getCurrentUrl(){
+        return driver.getCurrentUrl();
     }
 
 
@@ -90,8 +103,4 @@ public class BuyItem {
     private void type(By element, String text) {
         find(element).sendKeys(text);
     }
-
-
-
-
 }

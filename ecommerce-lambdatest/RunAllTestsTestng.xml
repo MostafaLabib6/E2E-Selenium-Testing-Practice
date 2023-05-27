@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
     <suite-files>
-        <suite-file path="CreateAccounttestng.xml"></suite-file>
-        <suite-file path="Login_Checkouttestng.xml"></suite-file>
+        <suite-file path="LoginTestng.xml"></suite-file>
+        <suite-file path="PurchaseItemtestng.xml"></suite-file>
     </suite-files>
 </suite>
