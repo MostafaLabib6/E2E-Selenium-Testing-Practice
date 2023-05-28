@@ -4,15 +4,15 @@ import org.testng.annotations.Test;
 public class ItemPurchaseTest extends BasisTest{
     ItemPurchase itemPurchase;
 
-    @Test(priority = 1,dataProvider = "testData")
+    @Test(dataProvider = "ItemPurchase")
     public void ItemPurchase(String firstName,String lastName,String address,String city,String zipCode,String country,int state) {
-        itemPurchase = new ItemPurchase(driver);
+        itemPurchase = new ItemPurchase(BasisTest.driver);
         itemPurchase.purchaseItem(firstName,lastName,address,city,zipCode,country,state);
         System.out.println("Item Purchase Test Passed");
     }
 
 
-    @DataProvider(name = "testData")
+    @DataProvider(name = "ItemPurchase")
     public static Object[][] testData() {
         return new Object[][]{
                 {"FirstName Test", "LastName Test", "Address Test", "City Test", "12345", "India", 0}

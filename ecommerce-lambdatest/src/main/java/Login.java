@@ -10,8 +10,7 @@ public class Login {
     By loginBtn = By.xpath("//*[@id=\"content\"]/div/div[2]/div/div/form/input[1]");
     public Login(WebDriver driver) {
         this.driver = driver;
-//        driver.manage().window().maximize();
-//        driver.get("https://ecommerce-playground.lambdatest.io/");
+
     }
     public void loginUser(String mail, String pass) {
         clickMyAccount();

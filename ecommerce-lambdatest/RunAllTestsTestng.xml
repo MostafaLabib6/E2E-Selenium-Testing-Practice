@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite">
-    <suite-files>
-        <suite-file path="LoginTestng.xml"></suite-file>
-        <suite-file path="PurchaseItemtestng.xml"></suite-file>
-    </suite-files>
+<suite name="All Test Suite" parallel="false">
+    <parameter name="browser" value="chrome"></parameter>
+    <test name="test">
+        <parameter name="email" value="hiwakon486@glumark.com"></parameter>
+        <parameter name="password" value="KL8WFfqdm@SDWmR"></parameter>
+    <classes>
+        <class name="CreateNewProfile"></class>
+        <class name="LoginTest"></class>
+        <class name="ItemPurchaseTest"></class>
+    </classes>
+    </test>
 </suite>

@@ -1,14 +1,14 @@
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Parameters;
 
 public class BasisTest {
-    protected WebDriver driver;
+    protected static WebDriver  driver;
 
-    @BeforeMethod
+    @BeforeSuite
     @Parameters({"browser"})
     public void setUp(String browser) {
         if (browser.equalsIgnoreCase("chrome")) {
@@ -22,9 +22,9 @@ public class BasisTest {
         driver.get("https://ecommerce-playground.lambdatest.io/");
     }
 
-    @AfterMethod
+    @AfterSuite
     public void tearDown() {
-        driver.quit();
+//        driver.close();
     }
 
 
