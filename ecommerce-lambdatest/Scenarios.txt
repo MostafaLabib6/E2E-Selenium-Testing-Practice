@@ -17,3 +17,13 @@ Scenario 2:
 * The user go to card page
 * The user clicks on the "Place Order" button
 
+
+Scenario 3:
+* The user open "https://ecommerce-playground.lambdatest.io/" in the browser
+* pick any product
+* The user clicks on the "Buy now" button
+* The user clicks on the "Checkout" button
+* The user go to card page
+* The user clicks on the "Place Order" button
+
+

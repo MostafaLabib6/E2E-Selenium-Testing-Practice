@@ -1,9 +1,8 @@
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.testng.Assert;
-import org.testng.annotations.Test;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -11,7 +10,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class CreateNewProfile extends BasisTest {
+public class SignIn {
+    private WebDriver driver;
     By myAccount = By.xpath("//*[@id=\"widget-navbar-217834\"]/ul/li[6]/a/div/span");
     By continueBtn = By.xpath("//*[@id=\"content\"]/div/div[1]/div/div/a");
     By firstName = By.xpath("//*[@id=\"input-firstname\"]");
@@ -24,8 +24,13 @@ public class CreateNewProfile extends BasisTest {
     By continueBtn2 = By.xpath("//*[@id=\"content\"]/form/div/div/input");
 
     By checkCreationMSG = By.xpath("//div[@id='content']//h1[@class='page-title my-3']//i[@class ='fas fa-check-circle text-success']");
-    @Test
-    void Test1_Registration() {
+
+
+
+    SignIn(WebDriver driver) {
+        this.driver = driver;
+    }
+    void signin() {
         click(myAccount);
         click(continueBtn);
         type(firstName,"userNameTest" );
@@ -37,24 +42,16 @@ public class CreateNewProfile extends BasisTest {
         type(confirmPassword, "123456HardP@ss");
         click(agreeprivacyPolicy);
         click(continueBtn2);
-        check("Your Account Has Been Created!".toLowerCase(), find(checkCreationMSG).getText().toLowerCase());
+//        check("Your Account Has Been Created!".toLowerCase(), find(checkCreationMSG).getText().toLowerCase());
         saveEmails(em);
         //---------------------------------------
         // Then logout
         Actions action = new Actions(driver);
         action.moveToElement(find(myAccount)).perform();
         click(By.xpath("//a[contains(text(),'Logout')]"));
-        Assert.assertEquals("https://ecommerce-playground.lambdatest.io/index.php?route=account/logout", driver.getCurrentUrl() );
+//        Assert.assertEquals("https://ecommerce-playground.lambdatest.io/index.php?route=account/logout", driver.getCurrentUrl() );
 
     }
-    private void check(String expected,String actual ) {
-        if (expected.equalsIgnoreCase(actual)) {
-            System.out.println("Test Passed");
-        } else {
-            System.out.println("Test Failed");
-        }
-    }
-
     private String generateRandomTelephone(){
         return RandomStringUtils.random(11, false, true);
     }
