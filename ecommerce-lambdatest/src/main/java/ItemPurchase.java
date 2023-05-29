@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class ItemPurchase {
-    WebDriver driver;
+    private WebDriver driver;
     By Home = By.xpath("//*[@id=\"widget-navbar-217834\"]/ul/li[1]/a/div/span");
     By Item = By.xpath("//*[@id=\"mz-carousel-213240\"]/div/div[1]/a/img");
     By BuyNowBtn = By.xpath("//*[@id=\"entry_216843\"]/button");

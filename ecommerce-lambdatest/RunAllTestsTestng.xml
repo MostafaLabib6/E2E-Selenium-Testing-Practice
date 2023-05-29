@@ -6,7 +6,7 @@
         <parameter name="email" value="hiwakon486@glumark.com"></parameter>
         <parameter name="password" value="KL8WFfqdm@SDWmR"></parameter>
     <classes>
-        <class name="CreateNewProfile"></class>
+        <class name="SignInTest"></class>
         <class name="LoginTest"></class>
         <class name="ItemPurchaseTest"></class>
     </classes>

@@ -1,13 +1,13 @@
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class ItemPurchaseTest extends BasisTest{
-    ItemPurchase itemPurchase;
+public class ItemPurchaseTest {
+    private ItemPurchase itemPurchase;
 
     @Test(dataProvider = "ItemPurchase")
-    public void ItemPurchase(String firstName,String lastName,String address,String city,String zipCode,String country,int state) {
+    public void ItemPurchase(String firstName, String lastName, String address, String city, String zipCode, String country, int state) {
         itemPurchase = new ItemPurchase(BasisTest.driver);
-        itemPurchase.purchaseItem(firstName,lastName,address,city,zipCode,country,state);
+        itemPurchase.purchaseItem(firstName, lastName, address, city, zipCode, country, state);
         System.out.println("Item Purchase Test Passed");
     }
 

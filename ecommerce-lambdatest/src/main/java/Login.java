@@ -3,7 +3,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class Login {
-    WebDriver driver;
+    private  WebDriver driver;
     By myAccount = By.xpath("//*[@id=\"widget-navbar-217834\"]/ul/li[6]/a/div/span");
     By email = By.xpath("//*[@id=\"input-email\"]");
     By password = By.xpath("//*[@id=\"input-password\"]");
