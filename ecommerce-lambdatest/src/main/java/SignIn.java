@@ -3,6 +3,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -11,46 +12,55 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class SignIn {
-    private WebDriver driver;
-    By myAccount = By.xpath("//*[@id=\"widget-navbar-217834\"]/ul/li[6]/a/div/span");
-    By continueBtn = By.xpath("//*[@id=\"content\"]/div/div[1]/div/div/a");
-    By firstName = By.xpath("//*[@id=\"input-firstname\"]");
-    By lastName = By.xpath("//*[@id=\"input-lastname\"]");
-    By email = By.xpath("//*[@id=\"input-email\"]");
-    By telephone = By.xpath("//*[@id=\"input-telephone\"]");
-    By password = By.xpath("//*[@id=\"input-password\"]");
-    By confirmPassword = By.xpath("//*[@id=\"input-confirm\"]");
-    By agreeprivacyPolicy = By.xpath("//label[@for='input-agree']");
-    By continueBtn2 = By.xpath("//*[@id=\"content\"]/form/div/div/input");
-
-    By checkCreationMSG = By.xpath("//div[@id='content']//h1[@class='page-title my-3']//i[@class ='fas fa-check-circle text-success']");
-
+    private final WebDriver driver;
+    @FindBy(xpath = "//*[@id=\"widget-navbar-217834\"]/ul/li[6]/a/div/span")
+    WebElement MyAccount;
+    @FindBy(xpath = "//*[@id=\"content\"]/div/div[1]/div/div/a")
+    WebElement ContinueBtn;
+    @FindBy(xpath = "//*[@id=\"input-firstname\"]")
+    WebElement FirstName;
+    @FindBy(xpath = "//*[@id=\"input-lastname\"]")
+    WebElement LastName;
+    @FindBy(xpath = "//*[@id=\"input-email\"]")
+    WebElement Email;
+    @FindBy(xpath = "//*[@id=\"input-telephone\"]")
+    WebElement Telephone;
+    @FindBy(xpath = "//*[@id=\"input-password\"]")
+    WebElement Password;
+    @FindBy(xpath = "//*[@id=\"input-confirm\"]")
+    WebElement ConfirmPassword;
+    @FindBy(xpath = "//label[@for='input-agree']")
+    WebElement AgreePrivacyPolicy;
+    @FindBy(xpath = "//*[@id=\"content\"]/form/div/div/input")
+    WebElement ContinueBtn2;
+    @FindBy(xpath = "//div[@id='content']//h1[@class='page-title my-3']//i[@class ='fas fa-check-circle text-success']")
+    WebElement CheckCreationMSG;
 
     SignIn(WebDriver driver) {
         this.driver = driver;
     }
 
     void signin() {
-        click(myAccount);
-        click(continueBtn);
-        type(firstName, "userNameTest");
-        type(lastName, "userLastNameTest");
+        MyAccount.click();
+        ContinueBtn.click();
+        FirstName.sendKeys("userNameTest");
+        LastName.sendKeys("userLastNameTest");
         String em = generateRandomEmail();
-        type(email, em);
-        type(telephone, generateRandomTelephone());
-        type(password, "123456HardP@ss");
-        type(confirmPassword, "123456HardP@ss");
-        click(agreeprivacyPolicy);
-        click(continueBtn2);
+        Email.sendKeys(em);
+        Telephone.sendKeys(generateRandomTelephone());
+        Password.sendKeys("123456HardP@ss");
+        ConfirmPassword.sendKeys("123456HardP@ss");
+        AgreePrivacyPolicy.click();
+        ContinueBtn2.click();
+
 //        check("Your Account Has Been Created!".toLowerCase(), find(checkCreationMSG).getText().toLowerCase());
-        saveEmails(em);
-        //---------------------------------------
-        // Then logout
+//        saveEmails(em);
+//        ---------------------------------------
+//         Then logout
         Actions action = new Actions(driver);
-        action.moveToElement(find(myAccount)).perform();
+        action.moveToElement(MyAccount).perform();
         click(By.xpath("//a[contains(text(),'Logout')]"));
 //        Assert.assertEquals("https://ecommerce-playground.lambdatest.io/index.php?route=account/logout", driver.getCurrentUrl() );
-
     }
 
     private String generateRandomTelephone() {
