@@ -26,14 +26,14 @@ public class SignIn {
     By checkCreationMSG = By.xpath("//div[@id='content']//h1[@class='page-title my-3']//i[@class ='fas fa-check-circle text-success']");
 
 
-
     SignIn(WebDriver driver) {
         this.driver = driver;
     }
+
     void signin() {
         click(myAccount);
         click(continueBtn);
-        type(firstName,"userNameTest" );
+        type(firstName, "userNameTest");
         type(lastName, "userLastNameTest");
         String em = generateRandomEmail();
         type(email, em);
@@ -52,21 +52,27 @@ public class SignIn {
 //        Assert.assertEquals("https://ecommerce-playground.lambdatest.io/index.php?route=account/logout", driver.getCurrentUrl() );
 
     }
-    private String generateRandomTelephone(){
+
+    private String generateRandomTelephone() {
         return RandomStringUtils.random(11, false, true);
     }
-    private String generateRandomEmail(){
-        return RandomStringUtils.random(10, true, false)+"@gmail.com";
+
+    private String generateRandomEmail() {
+        return RandomStringUtils.random(10, true, false) + "@gmail.com";
     }
+
     private WebElement find(By element) {
         return driver.findElement(element);
     }
+
     private void click(By element) {
         find(element).click();
     }
+
     private void type(By element, String text) {
         find(element).sendKeys(text);
     }
+
     private void saveEmails(String email) {
         Path path = Paths.get("D:/Intellij Idea/Inrellij-projects/E2E-Selenium-Testing/emails.txt");
 

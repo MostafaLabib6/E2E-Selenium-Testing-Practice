@@ -6,7 +6,7 @@ public class ItemPurchaseTest {
 
     @Test(dataProvider = "ItemPurchase")
     public void ItemPurchase(String firstName, String lastName, String address, String city, String zipCode, String country, int state) {
-        itemPurchase = new ItemPurchase(BasisTest.driver);
+        itemPurchase = new ItemPurchase(BaseTest.driver);
         itemPurchase.purchaseItem(firstName, lastName, address, city, zipCode, country, state);
         System.out.println("Item Purchase Test Passed");
     }

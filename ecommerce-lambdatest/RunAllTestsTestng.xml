@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite" parallel="false">
-    <parameter name="browser" value="chrome"></parameter>
+    <parameter name="browser" value="chrome"/>
     <test name="test">
-        <parameter name="email" value="hiwakon486@glumark.com"></parameter>
-        <parameter name="password" value="KL8WFfqdm@SDWmR"></parameter>
-    <classes>
-        <class name="SignInTest"></class>
-        <class name="LoginTest"></class>
-        <class name="ItemPurchaseTest"></class>
-    </classes>
+        <parameter name="email" value="hiwakon486@glumark.com"/>
+        <parameter name="password" value="KL8WFfqdm@SDWmR"/>
+        <classes>
+            <class name="SignInTest"/>
+            <class name="LoginTest"/>
+            <class name="ItemPurchaseTest"/>
+        </classes>
     </test>
 </suite>

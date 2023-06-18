@@ -1,89 +1,127 @@
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
 public class ItemPurchase {
-    private WebDriver driver;
-    By Home = By.xpath("//*[@id=\"widget-navbar-217834\"]/ul/li[1]/a/div/span");
-    By Item = By.xpath("//*[@id=\"mz-carousel-213240\"]/div/div[1]/a/img");
-    By BuyNowBtn = By.xpath("//*[@id=\"entry_216843\"]/button");
-    By FirstName = By.xpath("//*[@id=\"input-payment-firstname\"]");
-    By LastName = By.xpath("//*[@id=\"input-payment-lastname\"]");
-    By Email = By.xpath("//*[@id=\"input-payment-email\"]");
-    By Telephone = By.xpath("//*[@id=\"input-payment-telephone\"]");
-    By Password = By.xpath("//*[@id=\"input-payment-password\"]");
-    By ConfirmPassword = By.xpath("//*[@id=\"input-payment-confirm\"]");
-    By Address1 = By.xpath("//*[@id=\"input-payment-address-1\"]");
-    By City = By.xpath("//*[@id=\"input-payment-city\"]");
-    By PostCode = By.xpath("//*[@id=\"input-payment-postcode\"]");
-    By Country = By.xpath("//*[@id=\"input-payment-country\"]");
-    By Region = By.xpath("//*[@id=\"input-payment-zone\"]");
-    By Terms = By.xpath("//*[@id=\"form-checkout\"]/div/div[2]/div/div[5]/label");
-    By ContinueBtn = By.xpath("//*[@id=\"button-save\"]");
-    By ConfirmOrder = By.xpath("//*[@id=\"button-confirm\"]");
+    private final WebDriver driver;
+    @FindBy(xpath = "//*[@id=\"widget-navbar-217834\"]/ul/li[1]/a/div/span")
+    WebElement Home;
+
+    @FindBy(xpath = "//*[@id=\"mz-carousel-213240\"]/div/div[1]/a/img")
+    WebElement Item;
+    @FindBy(xpath = "//*[@id=\"entry_216843\"]/button")
+    WebElement BuyNowBtn;
+
+    @FindBy(xpath = "//*[@id=\"input-payment-firstname\"]")
+    WebElement FirstName;
+
+    @FindBy(xpath = "//*[@id=\"input-payment-lastname\"]")
+    WebElement LastName;
+    @FindBy(xpath = "//*[@id=\"input-payment-Email\"]")
+    WebElement Email;
+    @FindBy(xpath = "//*[@id=\"input-payment-Telephone\"]")
+    WebElement Telephone;
+    @FindBy(xpath = "//*[@id=\"input-payment-Password\"]")
+    WebElement Password;
+    @FindBy(xpath = "//*[@id=\"input-payment-confirm\"]")
+    WebElement ConfirmPassword;
+    @FindBy(xpath = "//*[@id=\"input-payment-address-1\"]")
+    WebElement Address1;
+    @FindBy(xpath = "//*[@id=\"input-payment-city\"]")
+    WebElement City;
+    @FindBy(xpath = "//*[@id=\"input-payment-postcode\"]")
+    WebElement PostCode;
+    @FindBy(xpath = "//*[@id=\"input-payment-country\"]")
+    WebElement Country;
+    @FindBy(xpath = "//*[@id=\"input-payment-zone\"]")
+    WebElement Region;
+    @FindBy(xpath = "//*[@id=\"form-checkout\"]/div/div[2]/div/div[5]/label")
+    WebElement Terms;
+    @FindBy(xpath = "//*[@id=\"button-save\"]")
+    WebElement ContinueBtn;
+    @FindBy(xpath = "//*[@id=\"button-confirm\"]")
+    WebElement ConfirmOrder;
     Select select;
+
     public ItemPurchase(WebDriver driver) {
         this.driver = driver;
     }
 
     public void setFirstName(String name) {
-        type(FirstName, name);
+        FirstName.sendKeys(name);
     }
+
     public void setLastName(String name) {
-        type(LastName, name);
+        LastName.sendKeys(name);
     }
+
     public void setAddress1(String address) {
-        type(Address1, address);
+        Address1.sendKeys(address);
     }
+
     public void setCity(String city) {
-        type(City, city);
+        City.sendKeys(city);
     }
+
     public void setPostCode(String code) {
-        type(PostCode, code);
+        PostCode.sendKeys(code);
     }
+
     public void setEmail(String email) {
-        type(Email, email);
+        Email.sendKeys(email);
     }
+
     public void setTelephone(String number) {
-        type(Telephone, number);
+        Telephone.sendKeys(number);
     }
+
     public void setPassword(String password) {
-        type(Password, password);
+        Password.sendKeys(password);
     }
+
     public void setConfirmPassword(String password) {
-        type(ConfirmPassword, password);
+        ConfirmPassword.sendKeys(password);
     }
+
     public void setCountry(String country) {
-       select = new Select(find(Country));
-       select.selectByVisibleText(country);
+        select = new Select(Country);
+        select.selectByVisibleText(country);
     }
+
     public void setRegion(int index) {
-        select = new Select(find(Region));
+        select = new Select(Region);
         select.selectByIndex(index);
     }
+
     public void clickTerms() {
-        click(Terms);
+        Terms.click();
     }
+
     public void clickContinueBtn() {
-        click(ContinueBtn);
+        ContinueBtn.click();
     }
+
     public void clickHome() {
-        click(Home);
+        Home.click();
     }
+
     public void clickItem() {
-        click(Item);
+        Item.click();
     }
+
     public void clickBuyNowBtn() {
-        click(BuyNowBtn);
+        BuyNowBtn.click();
     }
+
     public void clickConfirmOrder() {
-        click(ConfirmOrder);
+        ConfirmOrder.click();
     }
-    public void purchaseItem(String firstName,String lastName,String address,String city,String zipCode,String country,int state){
+
+    public void purchaseItem(String firstName, String lastName, String address, String city, String zipCode, String country, int state) {
         clickHome();
         clickItem();
         clickBuyNowBtn();
@@ -103,18 +141,8 @@ public class ItemPurchase {
         clickConfirmOrder();
         assert getCurrentUrl().equals("https://ecommerce-playground.lambdatest.io/checkout/confirm");
     }
-    public String getCurrentUrl(){
+
+    public String getCurrentUrl() {
         return driver.getCurrentUrl();
-    }
-
-
-    private WebElement find(By element) {
-        return driver.findElement(element);
-    }
-    private void click(By element) {
-        find(element).click();
-    }
-    private void type(By element, String text) {
-        find(element).sendKeys(text);
     }
 }

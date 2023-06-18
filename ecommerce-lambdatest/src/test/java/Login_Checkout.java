@@ -7,12 +7,12 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class Login_Checkout extends BasisTest{
+public class Login_Checkout extends BaseTest {
     private String mail = "hiwakon486@glumark.com";
     private String pass = "KL8WFfqdm@SDWmR";
     By myAccount = By.xpath("//*[@id=\"widget-navbar-217834\"]/ul/li[6]/a/div/span");
-    By email = By.xpath("//*[@id=\"input-email\"]");
-    By password = By.xpath("//*[@id=\"input-password\"]");
+    By email = By.xpath("//*[@id=\"input-Email\"]");
+    By password = By.xpath("//*[@id=\"input-Password\"]");
     By loginBtn = By.xpath("//*[@id=\"content\"]/div/div[2]/div/div/form/input[1]");
     By searchBox = By.xpath("//*[@id=\"search\"]/div[1]/div[1]/div[2]/input");
     By searchBtn = By.xpath("//*[@id=\"search\"]/div[2]/button");
